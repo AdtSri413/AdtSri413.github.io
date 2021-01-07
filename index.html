@@ -6,11 +6,8 @@
     <body>
         <input type="text" id="myinput" name="search" placeholder="search..." style="width:200px; height: 40px; border-radius: 4px; font-size: 18px;"><br>
         <div id="images">
-            <a href="https://example.com"><img src="http://vu.hn/images/BitcoinCashLogo.png" alt="Bitcoin" width=130></a>
-            <a href="https://example.com"><img src="https://www.ethereum.org/images/logos/ETHEREUM-LOGO_PORTRAIT_Black_small.png" alt="Ethereum" width=130></a>
             <a href="https://example.com"><img src="https://upload.wikimedia.org/wikipedia/commons/e/eb/Ripple-Logo.png" alt="Ripple" width=130></a>
             <a href="https://example.com"><img src="https://i.redd.it/tsmzy49d4adz.jpg" alt="Bitcoin Cash" width=130></a>
-            <a href="https://example.com"><img src="https://themerkle.com/wp-content/uploads/cardano.jpg" alt="Cardano" width=130></a>
             <a href="https://example.com"><img src="https://pbs.twimg.com/media/DJkf7M4VYAAgt8V.png" alt="NEM" width=130></a>
             <a href="https://example.com"><img src="https://bitkee.com/icons/litecoin-logo.png" alt="LiteCoin" width=130></a>
             <a href="https://example.com"><img src="http://bittrust.s3.amazonaws.com/1486429998.png" alt="Stellar Lumens" width=130></a>
@@ -25,7 +22,7 @@ $("#myinput").keyup(function() {
         $('img').show();
     else {
         $('img').hide();
-        $("img[alt*=" + val + "i]").show();
+        $("img[alt*=" + val + "]").show();
     }
 });
 </script>
