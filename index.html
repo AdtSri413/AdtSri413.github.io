@@ -1,5 +1,36 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
+    <title>WhitePaper Repository</title>
+    <head>
+        <script   src="https://code.jquery.com/jquery-3.2.1.min.js"   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="   crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <input type="text" id="myinput" name="search" placeholder="search..." style="width:200px; height: 40px; border-radius: 4px; font-size: 18px;"><br>
+        <div id="images">
+            <a href="https://example.com"><img src="http://vu.hn/images/BitcoinCashLogo.png" alt="Bitcoin" width=130></a>
+            <a href="https://example.com"><img src="https://www.ethereum.org/images/logos/ETHEREUM-LOGO_PORTRAIT_Black_small.png" alt="Ethereum" width=130></a>
+            <a href="https://example.com"><img src="https://upload.wikimedia.org/wikipedia/commons/e/eb/Ripple-Logo.png" alt="Ripple" width=130></a>
+            <a href="https://example.com"><img src="https://i.redd.it/tsmzy49d4adz.jpg" alt="Bitcoin Cash" width=130></a>
+            <a href="https://example.com"><img src="https://themerkle.com/wp-content/uploads/cardano.jpg" alt="Cardano" width=130></a>
+            <a href="https://example.com"><img src="https://pbs.twimg.com/media/DJkf7M4VYAAgt8V.png" alt="NEM" width=130></a>
+            <a href="https://example.com"><img src="https://bitkee.com/icons/litecoin-logo.png" alt="LiteCoin" width=130></a>
+            <a href="https://example.com"><img src="http://bittrust.s3.amazonaws.com/1486429998.png" alt="Stellar Lumens" width=130></a>
+        </div>
+    </body>
+</html>
+
+<script>
+$("#myinput").keyup(function() {
+    var val = $.trim(this.value);
+    if (val === "")
+        $('img').show();
+    else {
+        $('img').hide();
+        $("img[alt*=" + val + "i]").show();
+    }
+});
+</script>
+
+<!-- <html>
     <head>
         <link href="filepond-master/dist/filepond.css" rel="stylesheet">
         <input type="file" 
@@ -34,7 +65,6 @@
             .filepond--drip-blob {
                 background-color: #7f8a9a;
             }
-
 
             /**
             * Page Styles
@@ -74,4 +104,4 @@
         </script>
     </body>
     
-</html>
+</html> -->
