@@ -1,121 +1,50 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
     <head>
-        <script src="https://code.jquery.com/jquery-1.8.3.js" type="text/javascript"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+    <title>Testing</title>
 
-        <style>
-            .input-file-row-1:after 
+    <script type="text/javascript">
+        function fileChanged(val) 
+        {
+            //assume the value is not an image
+            var isImage = false;
+            var msg = "", path = "";
+            var validImages = ["jpg","gif","png","bmp"];
+            for (var i = 0, ilength = validImages.length; i < ilength; ++i) 
             {
-                content: ".";
-                display: block;
-                clear: both;
-                visibility: hidden;
-                line-height: 0;
-                height: 0;
-            }
-
-            .input-file-row-1
-            {
-                display: inline-block;
-                margin-top: 25px;
-                position: relative;
-            }
-
-            #preview_image 
-            {
-                display: none;
-                width: 90px;
-                height: 90px;
-                margin: 2px 0px 0px 5px;
-                border-radius: 10px;
-            }
-
-            .upload-file-container 
-            { 
-                position: relative; 
-                width: 100px; 
-                height: 137px; 
-                overflow: hidden;   
-                background: url('images/picplus.png') top center no-repeat;
-                float: left;
-                margin-left: 23px;
-            } 
-
-            .upload-file-container-text
-            {
-                font-family: Arial, sans-serif;
-                font-size: 12px;
-                color: #719d2b;
-                line-height: 17px;
-                text-align: center;
-                display: block;
-                position: absolute; 
-                left: 0; 
-                bottom: 0; 
-                width: 100px; 
-                height: 35px;
-            }
-
-            .upload-file-container-text > span
-            {
-                border-bottom: 1px solid #719d2b;
-                cursor: pointer;
-            }
-
-            .one_opacity_0 
-            {
-                opacity: 0;
-                height: 0;
-                width: 1px;
-                float: left;
-            }
-        </style>
-        
-        <script>
-            $(document).ready(function(){
-                function readURL(input,target)
-                {
-                    if(input.files && input.files[0])
-                    {
-                        var reader=new FileReader();
-                        var image_target=$(target);
-                        reader.onload=function(e)
-                        {
-                            image_target.attr('src',e.target.result).show();
-                        };
-                        reader.readAsDataUrl(input.files[0]);
-                    }
+                if (val.indexOf("." + validImages[i]) !== -1) { 
+                isImage = true;
+                break; 
                 }
+            }
+            if (isImage) 
+            {
+                path = "file:///" + encodeURI(val);
+                msg = val.substr((val.lastIndexOf("\\\\") + 1));
+            } 
+            else 
+            {
+                path = "";
+                msg = "Not a valid image";
+            }
+            document.getElementById("img").src = path;
+            document.getElementById("info").innerHTML = msg;
+        }
 
-                $("patient_pic").on("change",function()
-                {
-                    readURL(this,"#preview_image")
-                });
-            });
-        </script>
+        window.onload = function() 
+        {
+            document.getElementById("image").onchange = function() { fileChanged(this.value); };
+        };
+    </script>
+
     </head>
-
     <body>
-        <form name="" method="post" action="#" class="feedback-form-1">
-            <fieldset>
-                <div class="input-file-row-1">
-                    <div class="upload-file-container">
-                        <img id="preview_image" src="#" alt="" />
-                        <div class="upload-file-container-text">
-                            <div class = 'one_opacity_0'>
-                                <input type="file" id="patient_pic" label = "add" />
-                            </div>
-                            <span> Add Photo </span>
-                        </div>
-
-                        <div class="upload-file-container-text">
-                            <div class = 'one_opacity_0'>
-                                <input type="file" id="patient_pic" label = "add" />
-                            </div>
-                            <span> Add Photo </span>
-                        </div>
-                    </div>
-                </div>
-            </fieldset>
+        <form action="" method="get">
+            <p><input type="file" id="image" name="image"></p>
+            <p><img src="" id="img" height="150" alt=""><br>
+                <span id="info"></span>
+            </p>
         </form>
     </body>
 </html>
